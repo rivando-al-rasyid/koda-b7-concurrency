@@ -1,6 +1,11 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+
 	"github.com/rivando-al-rasyid/koda-b7-concurrency/internals/papan"
 )
 
@@ -23,8 +28,24 @@ func main() {
 	// 	wg.Go(func() { activities.Pagi(kegiatan) })
 	// }
 
-	pesanChan := make(chan string)
-	go papan.Pesan(pesanChan)
+	scanner := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("Kepada ")
+	scanner.Scan()
+	kepada := strings.TrimSpace(scanner.Text())
+
+	fmt.Println("isi Pesan")
+	scanner.Scan()
+	pesan := strings.TrimSpace(scanner.Text())
+
+	pesanfull := fmt.Sprintf("Kepada %s pesan %s", kepada, pesan)
+
+	pesanSlice := []string{}
+	pesanSlice = append(pesanSlice, pesanfull)
+
+	pesanChan := make(chan []string)
+
+	go papan.Pesan(pesanChan, pesanSlice)
 	papan.CetakPesan(pesanChan)
 
 }
