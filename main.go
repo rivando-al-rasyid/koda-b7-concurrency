@@ -24,7 +24,7 @@ func main() {
 	// }
 
 	pesanChan := make(chan string)
-	go pap.Pesan(pesanChan)
+	go papan.Pesan(pesanChan)
 	papan.CetakPesan(pesanChan)
 
 }
