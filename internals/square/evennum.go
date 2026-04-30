@@ -1,10 +1,10 @@
 package square
 
-func Checkeven(in <-chan int, out chan<- int) {
-	defer close(out)
+func Checkeven(in <-chan int, even chan<- int) {
+	defer close(even)
 	for n := range in {
 		if n%2 == 0 {
-			out <- n
+			even <- n
 		}
 	}
 }
