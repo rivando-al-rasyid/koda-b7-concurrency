@@ -12,7 +12,7 @@ func Generatenum(ch chan<- int) {
 	defer close(ch)
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Print("input angka: ")
+	fmt.Print("Input Number: ")
 	scanner.Scan()
 	n := strings.TrimSpace(scanner.Text())
 
